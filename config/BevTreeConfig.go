@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 )
 
-//编辑器地址@http://editor.behavior3.com/#/editor
-//节点json类型
+// 编辑器地址@http://editor.behavior3.com/#/editor
+// 节点json类型
 type BTNodeCfg struct {
 	Id          string                 `json:"id"`
 	Name        string                 `json:"name"`
@@ -72,22 +72,22 @@ func (this *BTNodeCfg) GetPropertyAsString(name string) string {
 
 	str, fok := v.(string)
 	if !fok {
-		return fmt.Sprintf("%v",v)
+		return fmt.Sprintf("%v", v)
 	}
 	return str
 }
 
-//树json类型
+// 树json类型
 type BTTreeCfg struct {
 	ID          string                 `json:"id"`
 	Title       string                 `json:"title"`
 	Description string                 `json:"description"`
 	Root        string                 `json:"root"`
 	Properties  map[string]interface{} `json:"properties"`
-	Nodes       map[string]BTNodeCfg   `json:"nodes"`
+	Nodes       map[string]*BTNodeCfg  `json:"nodes"`
 }
 
-//加载
+// 加载
 func LoadTreeCfg(path string) (*BTTreeCfg, bool) {
 
 	var tree BTTreeCfg

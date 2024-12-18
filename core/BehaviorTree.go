@@ -189,7 +189,7 @@ func (this *BehaviorTree) Load(data *config.BTTreeCfg, maps *b3.RegisterStructMa
 	// Create the node list (without connection between them)
 
 	for id, s := range data.Nodes {
-		spec := &s
+		spec := s
 		var node IBaseNode
 
 		if spec.Category == "tree" {

@@ -20,10 +20,12 @@ type IBaseNode interface {
 
 	Ctor()
 	Initialize(params *BTNodeCfg)
-	GetCategory() string
 	Execute(tick *Tick) b3.Status
+	GetID() string
+	GetCategory() string
 	GetName() string
 	GetTitle() string
+	GetDescription() string
 	SetBaseNodeWorker(worker IBaseWorker)
 	GetBaseNodeWorker() IBaseWorker
 }
@@ -172,6 +174,9 @@ func (this *BaseNode) GetName() string {
 func (this *BaseNode) GetTitle() string {
 	//fmt.Println("GetTitle ", this.title)
 	return this.title
+}
+func (this *BaseNode) GetDescription() string {
+	return this.description
 }
 
 /**
