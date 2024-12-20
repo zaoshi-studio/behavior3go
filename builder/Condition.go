@@ -1,4 +1,4 @@
-package builderv2
+package builder
 
 import (
 	"github.com/magicsea/behavior3go/core"
@@ -13,10 +13,7 @@ type IConditionAdapter interface {
 func AdaptCondition(condition core.ICondition, options ...Option) IConditionAdapter {
 	adapter := &ConditionAdapter{
 		ICondition: condition,
-		AdaptNode:  newAdaptNode(reflect.TypeOf(condition).Elem().Name()),
-	}
-	for _, option := range options {
-		option.apply(&adapter.AdaptNode)
+		AdaptNode:  newAdaptNode(reflect.TypeOf(condition).Elem().Name(), options...),
 	}
 	return adapter
 }
@@ -33,4 +30,5 @@ func (adapter *ConditionAdapter) GetName() string {
 	return adapter.AdaptNode.GetName()
 }
 func (adapter *ConditionAdapter) GetTitle() string       { return adapter.AdaptNode.GetTitle() }
+func (adapter *ConditionAdapter) GetCategory() string    { return adapter.ICondition.GetCategory() }
 func (adapter *ConditionAdapter) GetDescription() string { return adapter.AdaptNode.GetDescription() }

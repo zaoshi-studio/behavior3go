@@ -1,4 +1,4 @@
-package builderv2
+package builder
 
 import (
 	"github.com/magicsea/behavior3go/core"
@@ -14,10 +14,7 @@ type IDecoratorAdapter interface {
 func AdaptDecorator(decorator core.IDecorator, options ...Option) IDecoratorAdapter {
 	adapter := &DecoratorAdapter{
 		IDecorator: decorator,
-		AdaptNode:  newAdaptNode(reflect.TypeOf(decorator).Elem().Name()),
-	}
-	for _, option := range options {
-		option.apply(&adapter.AdaptNode)
+		AdaptNode:  newAdaptNode(reflect.TypeOf(decorator).Elem().Name(), options...),
 	}
 	return adapter
 }
@@ -34,6 +31,7 @@ func (adapter *DecoratorAdapter) GetName() string {
 	return adapter.AdaptNode.GetName()
 }
 func (adapter *DecoratorAdapter) GetTitle() string       { return adapter.AdaptNode.GetTitle() }
+func (adapter *DecoratorAdapter) GetCategory() string    { return adapter.IDecorator.GetCategory() }
 func (adapter *DecoratorAdapter) GetDescription() string { return adapter.AdaptNode.GetDescription() }
 
 func (adapter *DecoratorAdapter) AdaptSetChild(adaptNode IAdaptNode) {

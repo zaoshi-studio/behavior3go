@@ -45,7 +45,7 @@ func main() {
 	var firstTree *BehaviorTree
 	//载入
 	for _, v := range projectConfig.Data.Trees {
-		tree := CreateBevTreeFromConfig(&v, maps)
+		tree := CreateBevTreeFromConfig(v, maps)
 		tree.Print()
 		mapTreesByID.Store(v.ID, tree)
 		if firstTree == nil {

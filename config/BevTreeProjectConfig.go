@@ -6,15 +6,15 @@ import (
 	"io/ioutil"
 )
 
-//工程json类型
+// 工程json类型
 type BTProjectCfg struct {
-	ID       string                 `json:"id"`
-	Select string                 `json:"selectedTree"`
-	Scope        string                 `json:"scope"`
-	Trees       []BTTreeCfg   `json:"trees"`
+	ID     string       `json:"id"`
+	Select string       `json:"selectedTree"`
+	Scope  string       `json:"scope"`
+	Trees  []*BTTreeCfg `json:"trees"`
 }
 
-//加载
+// 加载
 func LoadProjectCfg(path string) (*BTProjectCfg, bool) {
 
 	var project BTProjectCfg
